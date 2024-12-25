@@ -211,25 +211,31 @@ def create_or_update_ga4_config_tag(service, account_id, container_id, workspace
     create_tag(service, account_id, container_id, workspace_id, config_tag_body)
 
 def main():
-    service_account_path = '/content/gen-lang-client-0132026315-8646538ba3cc.json'
-    account_id = '6250380756'
-    container_id = '195849481'
-    measurement_id = "G-1E5EQG0KE7"
-    config_tag_name = "Tag-1"
-    event_tag_name = "Tag-1"
-    default_trigger_ids = ["182", "183", "184"]
+    service_account_path = '/path to file/'
+    account_id = 'account_id'
+    container_id = 'container_id'
+    measurement_id = "measurement_id"
+    config_tag_name = "config_tag_name"
+    event_tag_name = "event_tag_name"
+    default_trigger_ids = ["Trigger ID#1", "Trigger ID#2", "Trigger ID#3"]
 
     credentials = service_account.Credentials.from_service_account_file(service_account_path)
     service = build('tagmanager', 'v2', credentials=credentials)
 
+     # Get workspace ID
     workspace_id = get_workspace_id(service, account_id, container_id)
 
-    new_trigger_id = create_tag_and_trigger(service, account_id, container_id, workspace_id, "Tag-1", "Tag-3")
+    # Create a new tag and trigger
+    new_trigger_id = create_tag_and_trigger(service, account_id, container_id, workspace_id, config_tag_name, event_tag_name)
 
+    # Combine trigger IDs
     combined_trigger_ids = default_trigger_ids + [new_trigger_id]
 
+    # Create or update GA4 config tag
     create_or_update_ga4_config_tag(service, account_id, container_id, workspace_id, measurement_id, config_tag_name, combined_trigger_ids)
 
+    # Create GA4 event tag
     create_ga4_event_tag(service, account_id, container_id, workspace_id, measurement_id, event_tag_name)
+
 
 main()
