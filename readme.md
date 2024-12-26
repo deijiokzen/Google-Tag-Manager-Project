@@ -1,8 +1,8 @@
-**Code Review: Google Tag Manager Automation Script**
+# Google Tag Manager Automation Script
 
 This script is designed to automate operations in Google Tag Manager (GTM). It interacts with GTM APIs to create and manage tags and triggers within a specified workspace. The following sections explain each function and its purpose:
 
-**Imports and Initialization**
+## Imports and Initialization**
 
 The script uses the google.oauth2.service\_account and googleapiclient.discovery libraries to authenticate and interact with Google APIs.
 
@@ -10,7 +10,7 @@ The script uses the google.oauth2.service\_account and googleapiclient.discovery
 
 **from googleapiclient.discovery import build**
 
-**Key Functions**
+## Key Functions 
 
 **1\. create\_tag\_and\_trigger**
 
@@ -98,7 +98,7 @@ The script uses the google.oauth2.service\_account and googleapiclient.discovery
 *   **Parameters**: Similar to create\_ga4\_event\_tag, plus trigger\_ids for the tag's firing conditions.
 *   **Process**: Deletes any existing tag with the same name and creates a new one.
 
-**main Function**
+## main Function
 
 The main function orchestrates the script's execution:
 
